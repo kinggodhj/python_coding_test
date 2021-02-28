@@ -1,4 +1,4 @@
-preparing coding test based on python
+Python을 기반으로 하는 코딩 테스트 준비
 
 유용한 함수들 정리
 ==================
