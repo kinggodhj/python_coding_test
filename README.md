@@ -1,6 +1,8 @@
 preparing coding test based on python
 
-###유용한 함수들 정리
+유용한 함수들 정리
+==================
+
 >   
 >   ord()
 >>  e.g) ord('a')=97
