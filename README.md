@@ -1,8 +1,18 @@
 Python을 기반으로 하는 코딩 테스트 준비
 
-유용한 함수들 정리
+유용한 함수&패키지들 정리
 ==================
-
+> Queue
+> 
+> from collections import queue
+> 
+> defaultdict
+> 
+> from collections import defaultdict
+> 
+> minheap
+> 
+> import heapq
 >   
 >   ord()
 >>  e.g) ord('a')=97
