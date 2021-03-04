@@ -4,16 +4,19 @@ Python을 기반으로 하는 코딩 테스트 준비
 ==================
 > Queue
 > 
-> from collections import queue
+>> from collections import queue
+
 > 
 > defaultdict
 > 
-> from collections import defaultdict
+>> from collections import defaultdict
+
 > 
 > minheap
 > 
-> import heapq
->   
+>> import heapq
+> 
+  
 >   ord()
 >>  e.g) ord('a')=97
 >   
