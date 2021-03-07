@@ -1,12 +1,13 @@
 N=int(input())
-wareHouse=list(map(int, input().split(' ')))
-dp=[0]*N
+numbers=[list(map(int, input().split(' '))) for n in range(N)]
 
-dp[0]=wareHouse[0]
-#dp[1]=wareHouse[1]
-dp[1]=max(wareHouse[0], wareHouse[1])
+for i in range(1, N):
+    for j in range(len(numbers[i])):
+        if j==0:
+            numbers[i][j]=numbers[i-1][j]+numbers[i][j]
+        elif j==len(numbers[i])-1:
+            numbers[i][j]=numbers[i-1][j-1]+numbers[i][j]
+        else:
+            numbers[i][j]=max(numbers[i-1][j-1], numbers[i-1][j])+numbers[i][j]
 
-for i in range(2, N):
-    dp[i]=max(dp[i-1], dp[i-2]+wareHouse[i])
-
-print(dp[N-1])
+print(max(numbers[-1]))
