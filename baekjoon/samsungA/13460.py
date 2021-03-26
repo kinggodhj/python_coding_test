@@ -8,8 +8,6 @@ for _ in range(N):
     for t in range(len(tmp)):
         if tmp[t]=='R':
             R_coord=[_, t]
-        elif tmp[t]=='O':
-            O_coord=[_, t]
         elif tmp[t]=='B':
             B_coord=[_, t]
 
@@ -305,13 +303,6 @@ def move(lst, new, rx, ry, bx, by):
             exit(0)
     return [lst, new, rx, ry, bx, by]
 
-if R_coord==O_coord:
-    if R_coord!=B_coord:
-        print('0')
-        exit(0)
-    else:
-        print('-1')
-        exit(0)
 lst=[]
 result=[]
 for k in range(10):
