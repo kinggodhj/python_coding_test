@@ -1,168 +1,79 @@
-import copy
+moves=list(map(int, input().rstrip().split(' ')))
 
-scores=list(map(int, input().rstrip().split(' ')))
-dices=[[int(1e5),int(1e5),False]]*4
+#case 0: red 1:blue_1 2:blue_2 3:blue_3
+red=[i for i in range(0, 42, 2)]
+red_idx=[0]*len(red)
 
-red=[[2,4,6,8,10],[12,14,16,18,20], [22,24,26,28,30],[32,34,36,38,40]]
-blue=[[10, 13,16,19,25], [20,22,24,25],[30,28,27,26,25], [30,35,40]]
-r_in=[[False]*5 for _ in range(4)]
-b_in=[[False]*5 for _ in range(4)]
-total=0
+blue=[[0], [10, 13, 16, 19, 25, 30, 35, 40], [20, 22, 24, 25, 30, 35, 40], [30, 28, 27, 26, 25, 30, 35, 40]]
+blue_idx=[[0]*len(blue[i]) for i in range(4)]
 
-def turn(dices, i, move, s):
-    x=dices[i][0]
-    y=dices[i][1]
-    check=dices[i][2]
-    if check==False:
-        if x!=3:
-            if y+move>4:
-                if r_in[x+1][(y+move)%5]==False:
-                    dices[i][0]=x+1
-                    dices[i][1]=(y+move)%5
-                    s+=red[dices[i][0]][dices[i][1]]
-                    r_in[dices[i][0]][dices[i][1]]=True
-                    r_in[x][y]=False
-                else:
-                    return -1
-            elif y+move==4:
-                if b_in[0][dices[i][1]]==False:
-                    dices[i][1]=0
-                    dices[i][2]=True
-                    s+=red[dices[i][0]][dices[i][1]]
-                    b_in[dices[i][0]][dices[i][1]]=True
-                    if x!=0 and y!=-1:
-                        r_in[x][y]=False
-                else:
-                    return -1
+answer=0
+def DFS(i, dices, score, finish):
+    global answer
+    if i>=10:
+        if score>answer:
+            answer=score
+        return 
+    if finish==4:
+        if score>answer:
+            answer=score
+        return
+    idx=moves[i]
+    #새로운 말 추가
+    if finish+len(dices)<4:
+        if red_idx[idx]==0:
+            red_idx[idx]=1
+            if idx%5==0:
+                case=idx//5
+                blue_idx[case][0]=1
+                dices.append([case, 0])
+                DFS(i+1, dices, score+red[idx], finish)
+                blue_idx[case][0]=0
             else:
-                if r_in[dices[i][0]][y+move]==False:
-                    dices[i][1]=y+move
-                    s+=red[dices[i][0]][dices[i][1]]
-                    r_in[dices[i][0]][dices[i][1]]=True
-                    if x!=0 and y!=-1:
-                        r_in[x][y]=False
-                else:
-                    return -1
-        elif x==3:
-            if y+move>4:
-                dices[i][0]=-1
-                dices[i][1]=-1
-                dices[i][2]=False
-                r_in[x][y]=False
-            else:
-                if r_in[dices[i][0]][y+move]==False:
-                    dices[i][1]=y+move
-                    s+=red[dices[i][0]][dices[i][1]]
-                    r_in[dices[i][0]][dices[i][1]]=True
-                    r_in[x][y]=False
-                else:
-                    return -1
-    else:
-        if x==0:
-            if y+move>4:
-                if (y+move)%5>=3:
-                    dices[i][0]=-1
-                    dices[i][1]=-1
-                    b_in[x][y]=False
-                else:
-                    if b_in[x+3][(y+move)%5]==False:
-                        dices[i][0]=x+3
-                        dices[i][1]=(y+move)%5
-                        s+=blue[dices[i][0]][dices[i][1]]
-                        b_in[dices[i][0]][dices[i][1]]=True
-                        if x!=-1 and y!=-1:
-                            b_in[x][y]=False
-                    else:
-                        return -1
-            elif y+move<=4:
-                if b_in[dices[i][0]][y+move]==False:
-                    dices[i][1]=y+move
-                    s+=blue[dices[i][0]][dices[i][1]]
-                    b_in[dices[i][0]][dices[i][1]]=True
-                    if x!=-1 and y!=-1:
-                        b_in[x][y]=False
-                else:
-                    return -1
-        elif x==1:
-            if y+move>3:
-                if (y+move)%4>=3:
-                    dices[i][0]=-1
-                    dices[i][1]=-1
-                    b_in[x][y]=False
-                else:
-                    if b_in[x+2][(y+move)%4]==False:
-                        dices[i][0]=x+2
-                        dices[i][1]=(y+move)%4
-                        s+=blue[dices[i][0]][dices[i][1]]
-                        b_in[dices[i][0]][dices[i][1]]=True
-                        if x!=-1 and y!=-1:
-                            b_in[x][y]=False
-                    else:
-                        return -1
-            elif y+move<=3:
-                if b_in[dices[i][0]][y+move]==False:
-                    dices[i][1]=y+move
-                    s+=blue[dices[i][0]][dices[i][1]]
-                    b_in[dices[i][0]][dices[i][1]]=True
-                    if x!=-1 and y!=-1:
-                        b_in[x][y]=False
-                else:
-                    return -1
-        elif x==2:
-            if y+move>4:
-                if (y+move)%5>=3:
-                    dices[i][0]=-1
-                    dices[i][1]=-1
-                    b_in[x][y]=False
-                else:
-                    if b_in[x+1][(y+move)%5]==False:
-                        dices[i][0]=x+1
-                        dices[i][1]=(y+move)%5
-                        s+=blue[dices[i][0]][dices[i][1]]
-                        b_in[dices[i][0]][dices[i][1]]=True
-                        b_in[x][y]=False
-                    else:
-                        return -1
-            elif y+move<=4:
-                if b_in[dices[i][0]][y+move]==False:
-                    dices[i][1]=y+move
-                    s+=blue[dices[i][0]][dices[i][1]]
-                    b_in[dices[i][0]][dices[i][1]]=True
-                    b_in[x][y]=False
-                else:
-                    return -1
-        elif x==3:
-            if y+move>3:
-                dices[i][0]=-1
-                dices[i][1]=-1
-                dices[i][2]=False
-                b_in[x][y]=False
-            else:
-                if b_in[dices[i][0]][y+move]==False:
-                    dices[i][1]=y+move
-                    s+=blue[dices[i][0]][dices[i][1]]
-                    b_in[dices[i][0]][dices[i][1]]=True
-                    b_in[x][y]=False
-                else:
-                    return -1
-    return s
+                case=0
+                dices.append([case, idx])
+                DFS(i+1, dices, score+red[idx], finish)
+            dices.pop()
+            red_idx[idx]=0 
 
-def combination(order):
-    global total
-    if len(order)==10:
-        tmp=0
-        n_dice=copy.deepcopy(dices)
-        for i in range(len(order)):
-            if n_dice[order[i]][0]==int(1e5) and n_dice[order[i]][1]==int(1e5):
-                n_dice[order[i]]=[0, -1, False]
-            tmp=turn(n_dice, order[i], scores[i], tmp)
-            if tmp>0:
-                continue
-            return 
-        if tmp>total:
-            total=tmp
-    else:
-        for i in range(4):
-            combination(order+[i])
-combination([])
-print(total)
+    #있는 말 이동
+    if len(dices)>0:
+        for d in range(len(dices)):
+            case, dice=dices[d]
+            if case==0:
+                #도착 말 이후인 경우
+                if dice+idx>20:
+                    red_idx[dice]=0
+                    DFS(i+1, dices[0:d]+dices[d+1:], score, finish+1)
+                else:    
+                    if red_idx[dice+idx]==1:
+                        continue
+                    red_idx[dice]=0
+                    red_idx[dice+idx]=1
+                    if (dice+idx)%5==0 and dice+idx<20:
+                        case=(dice+idx)//5
+                        blue_idx[case][0]=1
+                        tmp=[case, 0]
+                        DFS(i+1, dices[0:d]+[tmp]+dices[d+1:], score+red[dice+idx], finish)
+                        blue_idx[case][0]=0
+                    else:
+                        tmp=[case, dice+idx]
+                        DFS(i+1, dices[0:d]+[tmp]+dices[d+1:], score+red[dice+idx], finish)
+                    red_idx[dice+idx]=0
+            elif case>0: #BLUE
+                if dice+idx>=len(blue_idx[case]):
+                    blue_idx[case][dice]=0
+                    DFS(i+1, dices[0:d]+dices[d+1:], score, finish+1)
+                else:
+                    if blue_idx[case][dice+idx]==1:
+                        continue
+                    blue_idx[case][dice]=0
+                    if dice==0:
+                        red_idx[case*5]=0
+                    blue_idx[case][dice+idx]=1
+                    tmp=[case, dice+idx]
+                    DFS(i+1, dices[0:d]+[tmp]+dices[d+1:], score+blue[case][dice+idx], finish)
+                    blue_idx[case][dice+idx]=0
+
+DFS(0, [], 0, 0)
+print(answer)
