@@ -48,13 +48,17 @@ _________________________________________________________
 
 >null check
 >> null 개수 출력
+>> 
 >> `data.isnull().sum()`
 >> 
 >> null인 column만 출력하기
+>> 
 >> `data.isnull().sum()[data.isnull().sum()>0]`
+>> 
 >> `len(data.isnull().sum()[data.isnull().sum()>0])`
 >>
 >> missing value의 총 개수
+>> 
 >> `sum(data.isnull().sum()[data.isnull().sum()>0])`
 
 
@@ -63,6 +67,8 @@ _________________________________________________________
 > pandas
 > 
 >sklearn
+>
 >> from sklearn.model_selection import train_test_split
+>> 
 >> x_train, x_val, y_train, y_val=train_test_split(x, y, train_size=0.8, test_size=0.2, random_state=0)
 
