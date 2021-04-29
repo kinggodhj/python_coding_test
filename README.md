@@ -61,6 +61,14 @@ _________________________________________________________
 >> 
 >> `sum(data.isnull().sum()[data.isnull().sum()>0])`
 >> 
+> missing value를 0으로 채우기
+>> data.fillna(0)
+>>  #fillna option
+>>  
+>>    method=bfill: 뒤의 것으로 채우기
+>>    
+>>    method=ffill: 앞의 것으로 채우기
+
 > missing value를 mean으로 채우기
 >> 
 >> from sklearn.impute import SimpleImputer
@@ -112,6 +120,8 @@ _________________________________________________________
 > 
 > pandas
 > 
+>> data.loc['label_name'] #label_name에 해당하는 모든 행 출력 
+>
 >sklearn
 >
 >> from sklearn.model_selection import train_test_split
