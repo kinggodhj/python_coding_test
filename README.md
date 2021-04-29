@@ -120,6 +120,11 @@ _________________________________________________________
 > 
 > pandas
 > 
+> pandas dataframe 크기 출력
+> 
+>> `data.shape`  #shape() 아님 주의!
+
+
 >> data.loc['label_name'] #label_name에 해당하는 모든 행 출력 
 >
 >sklearn
