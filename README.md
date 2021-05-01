@@ -98,21 +98,29 @@ _________________________________________________________
 
 > One-hot encoding
 
+>> ```
 >> from sklearn.preprocessing import OneHotEncoder
 
 >> enc=OneHotEncoder()
+>> 
+>> obj_col=[col for col in data.columns if data[col].dtype=='object']
 >>
+>> enc.fit_transform(data[obj_col])
+>> 
+>> data=[[1, 0, 0, 0.7], [0, 1, 0, 0.3], [0, 0, 1, 0.4], [1, 0 , 0, 0.6]]
+>> ```
+>> 
 >> ```
 >> obj_col=[col for col in data.columns if data[col].dtype=='object']
 >> 
->> obj_nuique=list(map(lambda x:data[x].nunique(), obj_col))
->>
->> object_nunique=[data]
->> ```
->>
->> `enc.fit_transform(data[col])`
+>> for col in obj_col:
 >> 
->> `data=[[1, 0, 0, 0.7], [0, 1, 0, 0.3], [0, 0, 1, 0.4], [1, 0 , 0, 0.6]]`
+>>    data.loc[data[col]=="apple", col]=1
+>>    
+>>    data.loc[data[col]=="pear", col]=2
+>>    
+>>    data.loc[data[col]=="strawberry", col]=3
+>> ```
 
 - .
 
@@ -124,8 +132,11 @@ _________________________________________________________
 > 
 >> `data.shape`  #shape() 아님 주의!
 
-
->> data.loc['label_name'] #label_name에 해당하는 모든 행 출력 
+>> data.loc[행, 열] 
+>> 
+>> data.loc[index] #ㅎ해당 행 출력
+>> 
+>> data.loc[:, col_name] #col_name 열에 대한 모든 행 출력
 >
 >sklearn
 >
