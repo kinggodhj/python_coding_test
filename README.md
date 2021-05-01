@@ -129,6 +129,12 @@ _________________________________________________________
 >> data=[[1, 0, 0, 0.7], [0, 1, 0, 0.3], [0, 0, 1, 0.4], [1, 0 , 0, 0.6]]
 >> 
 >> ```
+>> 
+>> ```
+>> 2.
+>> 
+>> data=pd.concat([data, pd.get_dummies(data[col_name])], axis=1)
+>> ```
 
 - .
 
@@ -142,10 +148,13 @@ _________________________________________________________
 
 >> data.loc[행, 열] 
 >> 
->> data.loc[index] #ㅎ해당 행 출력
+>> `data.loc[index]` #ㅎ해당 행 출력
 >> 
->> data.loc[:, col_name] #col_name 열에 대한 모든 행 출력
+>> `data.loc[:, col_name]` #col_name 열에 대한 모든 행 출력
 >
+>> `data.hist("col_name")` #col_name 열에 대한 분포 확인 가능
+>> 
+
 >sklearn
 >
 >> from sklearn.model_selection import train_test_split
