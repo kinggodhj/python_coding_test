@@ -93,7 +93,11 @@ _________________________________________________________
 >> `apple:1, pear:2, strawberry:3 `
 >> 
 >> ```
->> `from sklearn.preprocessing import LabelEncoder
+>> 1. 
+>> 
+>> from sklearn.preprocessing import LabelEncoder
+>> 
+>> 2. 
 >> 
 >> obj_col=[col for col in data.columns if data[col].dtype=='object']
 >> 
@@ -112,16 +116,18 @@ _________________________________________________________
 > One-hot encoding
 
 >> ```
+>> 1. 
+>> 
 >> from sklearn.preprocessing import OneHotEncoder
 
 >> enc=OneHotEncoder()
->> `
+>> 
 >> obj_col=[col for col in data.columns if data[col].dtype=='object']
 >>
 >> enc.fit_transform(data[obj_col])
 >> 
 >> data=[[1, 0, 0, 0.7], [0, 1, 0, 0.3], [0, 0, 1, 0.4], [1, 0 , 0, 0.6]]
->> `
+>> 
 >> ```
 
 - .
