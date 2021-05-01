@@ -89,28 +89,12 @@ _________________________________________________________
 >> `drop_data = data.select_dtypes(exclude=['object']) //object이면 text로 된 데이터`
 
 > Label encoding
-
->> from sklearn.preprocessing import LabelEncoder
-
->> apple:1, pear:2, strawberry:3 
 >> 
->> `data=[[1, 0.7], [2, 0.3], [3, 0.4], [1, 0.6]]`
-
-> One-hot encoding
-
->> ```
->> from sklearn.preprocessing import OneHotEncoder
-
->> enc=OneHotEncoder()
->> 
->> obj_col=[col for col in data.columns if data[col].dtype=='object']
->>
->> enc.fit_transform(data[obj_col])
->> 
->> data=[[1, 0, 0, 0.7], [0, 1, 0, 0.3], [0, 0, 1, 0.4], [1, 0 , 0, 0.6]]
->> ```
+>> `apple:1, pear:2, strawberry:3 `
 >> 
 >> ```
+>> `from sklearn.preprocessing import LabelEncoder
+>> 
 >> obj_col=[col for col in data.columns if data[col].dtype=='object']
 >> 
 >> for col in obj_col:
@@ -120,6 +104,24 @@ _________________________________________________________
 >>    data.loc[data[col]=="pear", col]=2
 >>    
 >>    data.loc[data[col]=="strawberry", col]=3
+>>`
+>> ```
+>> 
+>> `data=[[1, 0.7], [2, 0.3], [3, 0.4], [1, 0.6]]`
+
+> One-hot encoding
+
+>> ```
+>> from sklearn.preprocessing import OneHotEncoder
+
+>> enc=OneHotEncoder()
+>> `
+>> obj_col=[col for col in data.columns if data[col].dtype=='object']
+>>
+>> enc.fit_transform(data[obj_col])
+>> 
+>> data=[[1, 0, 0, 0.7], [0, 1, 0, 0.3], [0, 0, 1, 0.4], [1, 0 , 0, 0.6]]
+>> `
 >> ```
 
 - .
