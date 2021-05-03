@@ -142,70 +142,74 @@ _________________________________________________________
  
   변수 특성 탐색
  
-> data frame 크기 출력: `data.shape`
+  > data frame 크기 출력: `data.shape`
 
-> price 열 정보 출력: `data["price"].describe() == data.price.describe()`
-> 
-> area 열의 범주 출력: `data["area"].unique()`
-> 
-> 범주 당 개수 출력: `data["area"].value_counts()`
+  > price 열 정보 출력: `data["price"].describe() == data.price.describe()`
+ 
+  > area 열의 범주 출력: `data["area"].unique()`
+ 
+  > 범주 당 개수 출력: `data["area"].value_counts()`
 
-> 평균: `data["price"].mean()`
+  > 평균: `data["price"].mean()`
  
   map & operator
-> 
-> price 열의 각 요소들에 mean을 빼줌: `data["price"].map(lambda p: p - data["price"].mean())`
+ 
+  > price 열의 각 요소들에 mean을 빼줌: `data["price"].map(lambda p: p - data["price"].mean())`
 
-> `data["price"]=data["price"]-data["price"].mean()`
+  > `data["price"]=data["price"]-data["price"].mean()`
 
-> '한국-서울' 만들기: `data["country"]+ "-" + data["area"]`
+  > '한국-서울' 만들기: `data["country"]+ "-" + data["area"]`
 
   데이터 선택
  
-> iloc: index 기반, loc: label 기반 
-> 
-> iloc
-> 
-> i번째 행 출력: `data.iloc[i]`
-> 
-> i, i+100, i+202 번째 행 출력: `data.iloc[[i, i+100, i+202]]`
-> 
-> i번째 열 출력: `data.iloc[:, i]`
-> 
-> loc
-> 
-> i번째 행 출력: `data.loc[i]`
-> 
-> col 열의 모든 행 출력: `data.loc[:, col]` 
+  iloc: index 기반, loc: label 기반 
+   
+  iloc
+   
+  > i번째 행 출력: `data.iloc[i]`
+  > 
+  > i, i+100, i+202 번째 행 출력: `data.iloc[[i, i+100, i+202]]`
+  > 
+  > i번째 열 출력: `data.iloc[:, i]`
+  > 
+  loc
+   
+  > i번째 행 출력: `data.loc[i]`
+  > 
+  > col 열의 모든 행 출력: `data.loc[:, col]` 
 
-> area 열 중 "seoul" 과 "busan"인 것만 출력
+  > area 열 중 "seoul" 과 "busan"인 것만 출력
 
-> `data["area"].isin(["seoul", "busan"])`
-> 
+  > `data["area"].isin(["seoul", "busan"])`
+   
   
   두 가지 이상의 조건
  
-> `data.loc[(조건 1) & (조건 2)]`
-> 
-> area가 "seoul" "busan" 인 것 중 start 5 이상인 것 출력
-> 
-> `data.loc[(data["area"].isin(["seoul", "busan"])) & (data["start"]>=5)]`
+  `data.loc[(조건 1) & (조건 2)]`
+   
+  > area가 "seoul" "busan" 인 것 중 start 5 이상인 것 출력
+  > 
+  > `data.loc[(data["area"].isin(["seoul", "busan"])) & (data["start"]>=5)]`
 
-> `data.hist("col_name")` #col_name 열에 대한 분포 확인
- 
+  분포 확인
+  
+  `data.hist("col_name")` #col_name 열에 대한 분포 확인
+
   string column의 길이 출력하기
-> 
-> `data[column].str.len()`  # len(data[column].str) 아님 주의!
-> 
-  date type 
+ 
+  `data[column].str.len()`  # len(data[column].str) 아님 주의!
+ 
+  date type의 변수 다루기 
 
-> `pd.to_datetime(data["Date"], format="%m/%d/%Y")`
-> 
-> date type에서 day, month, year 선택
-> 
-> `data["Date"].dt.day`
-> `data["Date"].dt.month`
-> `data["Date"].dt.year`
+  date type으로 변환하기
+  
+  `pd.to_datetime(data["Date"], format="%m/%d/%Y")`
+ 
+  date type에서 day, month, year 선택
+   
+  > `data["Date"].dt.day`
+  > `data["Date"].dt.month`
+  > `data["Date"].dt.year`
 
 >> 
 
@@ -213,8 +217,8 @@ _________________________________________________________
 
   데이터셋 나누기
   ```
-  > from sklearn.model_selection import train_test_split
-  >  
-> x_train, x_val, y_train, y_val=train_test_split(x, y, train_size=0.8, test_size=0.2, random_state=0)
-```
+  from sklearn.model_selection import train_test_split
+    
+  x_train, x_val, y_train, y_val=train_test_split(x, y, train_size=0.8, test_size=0.2, random_state=0)
+  ```
 
