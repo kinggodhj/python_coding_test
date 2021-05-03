@@ -142,9 +142,27 @@ _________________________________________________________
 > 
 > pandas
 > 
-> pandas dataframe 크기 출력
+> 변수 특성 탐색
 > 
->> `data.shape`  #shape() 아님 주의!
+>> data frame 크기 출력: `data.shape`
+
+>> price 열 정보 출력: `data["price"].describe() == data.price.describe()`
+>> 
+>> area 열의 범주 출력: `data["area"].unique()`
+>> 
+>> 범주 당 개수 출력: `data["area"].value_counts()`
+
+>> 평균: `data["price"].mean()`
+>> 
+> map 적용 가능
+> 
+>> price 열의 각 요소들에 mean을 빼줌: `data["price"].map(lambda p: p - data["price"].mean())`
+
+> operator 적용 가능
+
+>> `data["price"]=data["price"]-data["price"].mean()`
+
+>> '한국-서울' 만들기: `data["country"]+ "-" + data["area"]`
 
 > 데이터 선택
 > 
