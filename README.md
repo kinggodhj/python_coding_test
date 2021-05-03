@@ -151,10 +151,29 @@ _________________________________________________________
   > 범주 당 개수 출력: `data["area"].value_counts()`
 
   > 평균: `data["price"].mean()`
+   
+  > 가장 큰 값: `data["price"].max()` # min
+  
+  > 가장 큰 값의 idx: `data["price"].idxmax()` #idxmin
  
-  map & operator
+  map, apply & operator
  
-  > price 열의 각 요소들에 mean을 빼줌: `data["price"].map(lambda p: p - data["price"].mean())`
+  > price 열의 각 요소들에 mean을 빼줌: `data["price"].map(lambda p: p - data["price"].mean())` 
+  
+  함수를 정의하고 dataFrame에 적용
+  ```
+  def func(row):
+ 
+      if row["area"]=="seoul":
+    
+          return 1
+      
+      else:
+          return 2
+          
+  data.apply(func, axis=1)
+ 
+  ```
 
   > `data["price"]=data["price"]-data["price"].mean()`
 
