@@ -146,13 +146,38 @@ _________________________________________________________
 > 
 >> `data.shape`  #shape() 아님 주의!
 
->> data.loc[행, 열] 
+> 데이터 선택
+> 
+>> iloc: index 기반, loc: label 기반 
 >> 
->> `data.loc[index]` #ㅎ해당 행 출력
+>> iloc
 >> 
->> `data.loc[:, col_name]` #col_name 열에 대한 모든 행 출력
->
->> `data.hist("col_name")` #col_name 열에 대한 분포 확인 가능
+>> i번째 행 출력: `data.iloc[i]`
+>> 
+>> i, i+100, i+202 번째 행 출력: `data.iloc[[i, i+100, i+202]]`
+>> 
+>> i번째 열 출력: `data.iloc[:, i]`
+>> 
+>> loc
+>> 
+>> i번째 행 출력: `data.loc[i]`
+>> 
+>> col 열의 모든 행 출력: `data.loc[:, col]`
+>> 
+
+>> area 열 중 "seoul" 과 "busan"인 것만 출력
+
+>> `data["area"].isin(["seoul", "busan"])`
+>> 
+> 두 가지 이상의 조건
+> 
+> `data.loc[(조건 1) & (조건 2)]`
+> 
+>> area가 "seoul" "busan" 인 것 중 start 5 이상인 것 출력
+>> 
+>> `data.loc[(data["area"].isin(["seoul", "busan"])) & (data["start"]>=5)]`
+
+>> `data.hist("col_name")` #col_name 열에 대한 분포 확인
 >> 
 
 >> string column의 길이 출력하기
