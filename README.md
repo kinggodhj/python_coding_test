@@ -176,6 +176,8 @@ _________________________________________________________
   
   `data.grop_by(["country", "area"])`
   
+  `data.groupby("country")["price"].agg([min, max])`
+  
   > 요소 별 개수 출력하기: `data.group_by("country").size()` or `data.group_by("country")["country"].count()`
  
   map, apply & operator
