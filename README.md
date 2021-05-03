@@ -139,6 +139,16 @@ _________________________________________________________
 - numpy
  
 - pandas
+  
+  기본 설정
+  
+  열 이름 바꾸기
+  
+  `data.columns=[col1, col2, col3 ...]` #전체 column 모두 써줘야함
+  
+  일부만 작성해서 열 이름 바꾸기
+  
+  `data.rename(columns={"0": "col1", "3": "col3"})`
  
   변수 특성 탐색
  
@@ -155,6 +165,18 @@ _________________________________________________________
   > 가장 큰 값: `data["price"].max()` # min
   
   > 가장 큰 값의 idx: `data["price"].idxmax()` #idxmin
+  
+  > 개수 출력: `count()`
+
+  정렬하기
+  
+  `data.sort_values(by=len, ascending=False)` #역순
+ 
+  그룹 만들기
+  
+  `data.grop_by(["country", "area"])`
+  
+  > 요소 별 개수 출력하기: `data.group_by("country").size()` or `data.group_by("country")["country"].count()`
  
   map, apply & operator
  
@@ -170,10 +192,8 @@ _________________________________________________________
       
       else:
           return 2
-          
-  data.apply(func, axis=1)
- 
-  ```
+  ```       
+  `data.apply(func, axis=1)`
 
   > `data["price"]=data["price"]-data["price"].mean()`
 
