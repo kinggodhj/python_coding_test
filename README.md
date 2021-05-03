@@ -149,6 +149,10 @@ _________________________________________________________
   일부만 작성해서 열 이름 바꾸기
   
   `data.rename(columns={"0": "col1", "3": "col3"})`
+  
+  값 대체하기
+  
+  > area 열의 "seoul"을 "korea"로 대체하기: `data.area.replace("seoul", "korea")`
  
   변수 특성 탐색
  
@@ -170,15 +174,18 @@ _________________________________________________________
 
   정렬하기
   
-  `data.sort_values(by=len, ascending=False)` #역순
+  `data.sort_values(ascending=False)` #역순
+ 
+  > price 따라서 정렬: `data.sort_values(by="price")` 
  
   그룹 만들기
   
   `data.grop_by(["country", "area"])`
   
-  `data.groupby("country")["price"].agg([min, max])`
   
-  > 요소 별 개수 출력하기: `data.group_by("country").size()` or `data.group_by("country")["country"].count()`
+  > 나라 별 가격의 min, max 선택: `data.groupby("country")["price"].agg([min, max])`
+  
+  > 그룹 별 요소 개수 출력하기: `data.group_by("country").size()` or `data.group_by("country")["country"].count()`
  
   map, apply & operator
  
