@@ -155,6 +155,26 @@ _________________________________________________________
 >> `data.hist("col_name")` #col_name 열에 대한 분포 확인 가능
 >> 
 
+>> string column의 길이 출력하기
+>> 
+>> `data[column].str.len()`  # len(data[column].str) 아님 주의!
+>> 
+>>  요소 별 개수 세기 
+>> 
+>> `data[column].value_counts()`
+>> 
+>> date type 변경
+
+>> `pd.to_datetime(data["Date"], format="%m/%d/%Y")`
+>> 
+>> date type에서 day, month, year 선택
+>> 
+>> `data["Date"].dt.day`
+>> `data["Date"].dt.month`
+>> `data["Date"].dt.year`
+
+>> 
+
 >sklearn
 >
 >> from sklearn.model_selection import train_test_split
